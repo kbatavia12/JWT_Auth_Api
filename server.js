@@ -11,7 +11,7 @@ const Role = db.role;
 
 db.mongoose
   .connect(
-    "mongodb+srv://kbatavia12:karan@123@cluster0.fml20.mongodb.net/test?retryWrites=true&w=majority", 
+    "Enter url here!!", 
     {
       useNewUrlParser: true,
       useCreateIndex: true,
