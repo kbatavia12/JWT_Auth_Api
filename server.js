@@ -6,11 +6,12 @@ app.use(express.json());
 app.use(cors());
 
 const db = require("./app/models");
+const User = db.user;
 const Role = db.role;
 
 db.mongoose
   .connect(
-    "Enter your own url here!!", 
+    "mongodb+srv://kbatavia12:karan@123@cluster0.fml20.mongodb.net/test?retryWrites=true&w=majority", 
     {
       useNewUrlParser: true,
       useCreateIndex: true,
@@ -24,7 +25,9 @@ db.mongoose
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
-  res.json({ msg: "Welcome to the authentication application" });
+  User.estimatedDocumentCount((err, count) => {
+    res.json({count: count})
+  })
 });
 
 const initial = () => {

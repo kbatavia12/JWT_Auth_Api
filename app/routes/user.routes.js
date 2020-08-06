@@ -1,6 +1,7 @@
 const {authJWT} = require('../middleware');
 const controller = require('../controllers/user.controller');
-
+const db = require('../models');
+const User = db.user
 
 module.exports = (app) => {
     app.use((req, res, next) => {
@@ -10,7 +11,7 @@ module.exports = (app) => {
           );
           next();
     });
-
+    
     app.get("/api/test/all", controller.allAccess);
     app.get("/api/test/user", [authJWT.verifyToken], controller.userBoard);
     app.get("/api/test/mod", [authJWT.verifyToken, authJWT.isModerator], controller.moderatorBoard);
